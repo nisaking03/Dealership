@@ -84,5 +84,6 @@ public class Vehicle {
     public void setPrice(double price) {
         this.price = price;
     }
-    
+
 }
+// Blueprint for making a vehicle object
