@@ -1,7 +1,9 @@
 package com.pluralsight;
 
 public class UserInterface {
-    public static void MainMenu(String[] args) {
+    private Dealership dealership;
+
+    public void display(){
         String mainMenu =
                 "1 - Find vehicles within a price range\n" +
                 "2 - Find vehicles by make / model\n" +
@@ -52,7 +54,7 @@ public class UserInterface {
                 case 0: //exit
                     return;
                 default:
-                    System.out.println("'We don't have that service here...'");
+                    System.out.println(""); //Error message
                     break;
 
             }
@@ -83,7 +85,7 @@ public class UserInterface {
 
     }
     private static void processRemoveVehicleRequest(){
-        
+
     }
 }
 /* Features this will Include
