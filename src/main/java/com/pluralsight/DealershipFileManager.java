@@ -1,10 +1,13 @@
 package com.pluralsight;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 
 public class DealershipFileManager {
     //tools needed: File/Buffer Reader , File/Buffer Writer , StringSplit , TryCatch
+
 
     public Dealership getDealership(){
         // Step 1: Read FIRST line
@@ -16,6 +19,7 @@ public class DealershipFileManager {
         // Step 6: Add that Vehicle to the Dealership
 
         // Step 7: Return the Dealership
+        Dealership d = null;
         try{
             FileReader fileReader = new FileReader("inventory.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -26,8 +30,8 @@ public class DealershipFileManager {
             String name = line[0];
             String address = line[1];
             String phone = line[2];
-            
 
+            d = new Dealership(name, address, phone);
             String lineFromString;
 
             while((lineFromString = bufferedReader.readLine()) != null){
@@ -40,19 +44,45 @@ public class DealershipFileManager {
                 String color = part[5];
                 int odometer = Integer.parseInt(part[6]);
                 double price = Double.parseDouble(part[7]);
+
+                Vehicle v = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+                d.addVehicle(v);
             }
 
 
-        }catch(Exception e){
 
+
+        } catch(Exception e){
+            System.out.println("Error");
         }
-        return
+        return d;
     }
 
 
-    public saveDealership(){
-        //Using writer here
+    public void Vehicle saveDealership(Dealership dealership){
+        try{
+        FileWriter fileWriter = new FileWriter("inventory.csv", true);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
+            v = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+            v.addVehicle(v);
+
+            bufferedWriter.newLine();
+
+            bufferedWriter.write(v.getVin() + "|"
+                    + v.getYear() + "|"
+                    + v.getMake() + "|"
+                    + v.getModel() + "|"
+                    + v.getVehicleType() + "|"
+                    + v.getColor() + "|"
+                    + v.getOdometer() + "|"
+                    + v.getPrice());
+            bufferedWriter.close();
+
+        } catch(Exception e){
+            System.out.println("Error");
+        }
+        return null;
     }
 
 }
