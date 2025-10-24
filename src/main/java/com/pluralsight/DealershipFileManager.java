@@ -20,6 +20,14 @@ public class DealershipFileManager {
             FileReader fileReader = new FileReader("inventory.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
+            String firstLine = bufferedReader.readLine();
+
+            String[] line = firstLine.split("\\|");
+            String name = line[0];
+            String address = line[1];
+            String phone = line[2];
+            
+
             String lineFromString;
 
             while((lineFromString = bufferedReader.readLine()) != null){
@@ -28,7 +36,7 @@ public class DealershipFileManager {
                 int year = Integer.parseInt(part[1]);
                 String make = part[2];
                 String model = part[3];
-                String vehichleType = part[4];
+                String vehicleType = part[4];
                 String color = part[5];
                 int odometer = Integer.parseInt(part[6]);
                 double price = Double.parseDouble(part[7]);
