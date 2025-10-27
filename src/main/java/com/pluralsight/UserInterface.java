@@ -1,7 +1,15 @@
 package com.pluralsight;
 
 public class UserInterface {
+
     private Dealership dealership;
+
+    public UserInterface(){
+
+        DealershipFileManager dealFileManager = new DealershipFileManager();
+
+        this.dealership =  dealFileManager.getDealership();
+    }
 
     public void display(){
         String mainMenu =
@@ -54,7 +62,7 @@ public class UserInterface {
                 case 0: //exit
                     return;
                 default:
-                    System.out.println(""); //Error message
+                    System.out.println("Invalid entry"); //Error message
                     break;
 
             }
