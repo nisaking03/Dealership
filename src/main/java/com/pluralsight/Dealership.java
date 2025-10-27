@@ -16,6 +16,18 @@ public class Dealership {
         this.phone = phone;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
     public List<Vehicle> getVehicleByPrice(double min, double max){
         ArrayList<Vehicle> result = new ArrayList<>();
 

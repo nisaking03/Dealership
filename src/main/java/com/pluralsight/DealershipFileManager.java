@@ -35,7 +35,8 @@ public class DealershipFileManager {
             String lineFromString;
 
             while((lineFromString = bufferedReader.readLine()) != null){
-                String[] part = lineFromString.split("\\|");
+
+                String[] part = lineFromString.split(" \\| ");
                 int vin = Integer.parseInt(part[0]);
                 int year = Integer.parseInt(part[1]);
                 String make = part[2];
@@ -46,6 +47,7 @@ public class DealershipFileManager {
                 double price = Double.parseDouble(part[7]);
 
                 Vehicle v = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+
                 d.addVehicle(v);
             }
 
@@ -59,30 +61,29 @@ public class DealershipFileManager {
     }
 
 
-    public void Vehicle saveDealership(Dealership dealership){
+    public void saveDealership(Dealership d){
+
         try{
         FileWriter fileWriter = new FileWriter("inventory.csv", true);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            v = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
-            v.addVehicle(v);
-
-            bufferedWriter.newLine();
-
-            bufferedWriter.write(v.getVin() + "|"
-                    + v.getYear() + "|"
-                    + v.getMake() + "|"
-                    + v.getModel() + "|"
-                    + v.getVehicleType() + "|"
-                    + v.getColor() + "|"
-                    + v.getOdometer() + "|"
-                    + v.getPrice());
+            for(Vehicle v : d.getAllVehicles()){
+                bufferedWriter.newLine();
+                bufferedWriter.write(v.getVin() + " | "
+                        + v.getYear() +" | "
+                        + v.getMake() + " | "
+                        + v.getModel() + " | "
+                        + v.getVehicleType() + " | "
+                        + v.getColor() + " | "
+                        + v.getOdometer() + " | "
+                        + v.getPrice());
+            }
             bufferedWriter.close();
 
         } catch(Exception e){
             System.out.println("Error");
         }
-        return null;
+
     }
 
 }
