@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import java.util.ArrayList;
+
 public class UserInterface {
 
     private Dealership dealership;
@@ -68,31 +70,61 @@ public class UserInterface {
             }
         }
     }
-    private static void processGetByPriceRequest(){
+    private void processGetByPriceRequest(){
+        System.out.println("What is the minimum and maximum price?");
+        double minPrice = ConsoleHelper.promptForDouble("Enter minimum price");
+        double maxPrice = ConsoleHelper.promptForDouble("Enter maximum price");
+
+        ArrayList<Vehicle> vehiclesByPrice = (ArrayList<Vehicle>) dealership.getVehicleByPrice(minPrice,maxPrice);
+
+        System.out.println(vehiclesByPrice);
+    }
+    private void processGetByMakeModelRequest(){
+        System.out.println("What is the Make and Model you are looking for?");
+        String make = ConsoleHelper.promptForString("Enter Make");
+        String model = ConsoleHelper.promptForString("Enter Model");
+
+        ArrayList<Vehicle> vehiclesByMakeModel = (ArrayList<Vehicle>) dealership.getVehicleByMakeModel(make,model);
+
+        System.out.println(vehiclesByMakeModel);
+    }
+    private void processGetByYearRequest(){
+        System.out.println("What is the year you are looking for?");
+        int minYear = ConsoleHelper.promptForInt("Enter Minimum Year (YYYY)");
+        int maxYear = ConsoleHelper.promptForInt("Enter Maximum Year (YYYY)");
+
+        ArrayList<Vehicle>vehiclesByYear = (ArrayList<Vehicle>) dealership.getVehicleByYear(minYear,maxYear);
+        System.out.println(vehiclesByYear);
+    }
+    private void processGetByColorRequest(){
+        System.out.println("What vehicle color you are looking for?");
+        String color = ConsoleHelper.promptForString("Enter color");
+
+        ArrayList<Vehicle>vehiclesByColor = (ArrayList<Vehicle>) dealership.getVehicleByColor(color);
+        System.out.println(vehiclesByColor);
+    }
+    private void processGetByMileageRequest(){
+        System.out.println("What vehicle mileage you are looking for?");
+        int minMileage = ConsoleHelper.promptForInt("Enter minimum mileage");
+        int maxMileage = ConsoleHelper.promptForInt("Enter maximum mileage");
+
+        ArrayList<Vehicle>vehiclesByMileage = (ArrayList<Vehicle>) dealership.getVehicleByMileage(minMileage, maxMileage);
+        System.out.println(vehiclesByMileage);
+    }
+    private void processGetByVehicleTypeRequest(){
+        System.out.println("What Type of vehicle are you searching for?");
+        String vehicleType = ConsoleHelper.promptForString("Enter vehicle type");
+
+        ArrayList<Vehicle>vehiclesByType = (ArrayList<Vehicle>) dealership.getVehicleByType(vehicleType);
+        System.out.println(vehiclesByType);
+    }
+    private void processGetAllVehiclesRequest(){
+        System.out.println(dealership.getAllVehicles());
+    }
+    private void processAddVehicleRequest(){
 
     }
-    private static void processGetByMakeModelRequest(){
-
-    }
-    private static void processGetByYearRequest(){
-
-    }
-    private static void processGetByColorRequest(){
-
-    }
-    private static void processGetByMileageRequest(){
-
-    }
-    private static void processGetByVehicleTypeRequest(){
-
-    }
-    private static void processGetAllVehiclesRequest(){
-
-    }
-    private static void processAddVehicleRequest(){
-
-    }
-    private static void processRemoveVehicleRequest(){
+    private void processRemoveVehicleRequest(){
 
     }
 }
