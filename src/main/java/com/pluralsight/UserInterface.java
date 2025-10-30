@@ -24,14 +24,14 @@ public class UserInterface {
                 "7 - List ALL vehicles\n" +
                 "8 - Add a vehicle\n" +
                 "9 - Remove a vehicle\n" +
-                "0 - Quit */";
+                "0 - Quit \n";
 
 
         while (true) {
             System.out.print(mainMenu);
             int command;
 
-            command = ConsoleHelper.promptForInt(""); //prompt for main menu
+            command = ConsoleHelper.promptForInt("Enter here"); //prompt for main menu
 
             switch (command) {
                 case 1:
@@ -122,21 +122,37 @@ public class UserInterface {
         System.out.println(dealership.getAllVehicles());
     }
     private void processAddVehicleRequest(){
+        int VIN  = ConsoleHelper.promptForInt("What is the vehicle VIN number");
+        int year = ConsoleHelper.promptForInt("What is the Year of your vehicle");
+        String make = ConsoleHelper.promptForString("What is the vehicle make?");
+        String model = ConsoleHelper.promptForString("What is the vehicle model?");
+        String vehicleType = ConsoleHelper.promptForString("What is the vehicle type");
+        String color = ConsoleHelper.promptForString("What is the color of the vehicle");
+        int odometer = ConsoleHelper.promptForInt("What is the mileage of the vehicle");
+        double price = ConsoleHelper.promptForDouble("What is you asking price for the vehicle");
 
+        Vehicle vehicleToAdd = new Vehicle(VIN,year,make,model,vehicleType,color,odometer,price);
+        dealership.addVehicle(vehicleToAdd);
+
+        DealershipFileManager dealershipFileManager = new DealershipFileManager();
+        dealershipFileManager.saveDealership(dealership);
     }
     private void processRemoveVehicleRequest(){
+        int vin  = ConsoleHelper.promptForInt("What is the vehicle VIN number");
 
+        boolean found = false;
+
+        for(Vehicle v : dealership.getAllVehicles()){
+            if(vin == v.getVin()){
+                found = true;
+                dealership.removeVehicle(v);
+                System.out.println("Vehicle Removed!");
+                break;
+            }
+        }
+
+        if(found == false){
+            System.out.println("Could not find that Vehicles VIN");
+        }
     }
 }
-/* Features this will Include
-
-1 - Find vehicles within a price range
-2 - Find vehicles by make / model
-3 - Find vehicles by year range
-4 - Find vehicles by color
-5 - Find vehicles by mileage range
-6 - Find vehicles by type (car, truck, SUV, van)
-7 - List ALL vehicles
-8 - Add a vehicle
-9 - Remove a vehicle
-99 - Quit */

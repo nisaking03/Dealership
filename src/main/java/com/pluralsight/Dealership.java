@@ -8,8 +8,10 @@ public class Dealership {
     private String address;
     private String phone;
 
+    //Creates a list of all vehicles to reference back on
     ArrayList<Vehicle> inventory = new ArrayList<>();
 
+    //Creates dealership blueprint and sets attributes
     public Dealership (String name, String address, String phone){
         this.name = name;
         this.address = address;
@@ -28,6 +30,7 @@ public class Dealership {
         return phone;
     }
 
+    //Creates a list for each specific info to refer to
     public List<Vehicle> getVehicleByPrice(double min, double max){
         ArrayList<Vehicle> result = new ArrayList<>();
 
@@ -94,16 +97,18 @@ public class Dealership {
         return result;
     }
 
+    //Creates way to call every vehicle no matter the differences
     public List<Vehicle> getAllVehicles() {
      return inventory;
     }
 
+    //Creates way to add a new vehicle and save to file
     public void addVehicle(Vehicle vehicle){
         inventory.add(vehicle);
     }
 
+    //Creates way to delete a vehicle from file
     public void removeVehicle(Vehicle vehicle){
         inventory.remove(vehicle);
     }
 }
-// The logic behind adding/searching/removing vehicles

@@ -85,5 +85,17 @@ public class Vehicle {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "\nVehicle: " + '\n' +
+                "Make = " + make + '\n' +
+                "Model = " + model + '\n' +
+                "Year = " + year + '\n' +
+                "Color = " + color + '\n' +
+                "Price = " + price + '\n' +
+                "Mileage = " + odometer + '\n' +
+                "Type = " + vehicleType + '\n' +
+                "── ⋅ ⋅ ── ✩ ── ⋅ ⋅ ── ";
+    }
+
 }
-// Blueprint for making a vehicle object
